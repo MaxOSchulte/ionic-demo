@@ -16,7 +16,7 @@ export interface PictureItem {
 }
 
 @Injectable()
-export class PictureeIndexDbStore extends Dexie implements PictureStore {
+export class PictureIndexDbStore extends Dexie implements PictureStore {
   private pictures: Dexie.Table<PictureItem, number>;
 
   constructor() {

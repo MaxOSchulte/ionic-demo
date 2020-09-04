@@ -7,32 +7,31 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { environment } from '../environments/environment';
-import { customAnimation } from './animations/custom.animation';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ItemOfferDexieStore } from './stores/item-offer-dexie.store';
 import { ItemOfferStore } from './stores/item-offer.store';
-import { PictureeIndexDbStore, PICTURE_STORE_TOKEN } from './stores/picture-index-db.store';
+import { PICTURE_STORE_TOKEN, PictureIndexDbStore } from './stores/picture-index-db.store';
+import { customAnimation } from './animations/custom.animation';
 
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
-  imports: [
-    BrowserModule,
-    IonicModule.forRoot({
-      navAnimation: customAnimation,
-    }),
-    AppRoutingModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-  ],
-  providers: [
-    StatusBar,
-    SplashScreen,
-    FingerprintAIO,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    { provide: ItemOfferStore, useClass: ItemOfferDexieStore },
-    { provide: PICTURE_STORE_TOKEN, useClass: PictureeIndexDbStore },
-  ],
-  bootstrap: [AppComponent],
+    declarations: [ AppComponent ],
+    entryComponents: [],
+    imports: [
+        BrowserModule,
+        IonicModule.forRoot({navAnimation: customAnimation}),
+        AppRoutingModule,
+        ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    ],
+    providers: [
+        StatusBar,
+        SplashScreen,
+        FingerprintAIO,
+        { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+        { provide: ItemOfferStore, useClass: ItemOfferDexieStore },
+        { provide: PICTURE_STORE_TOKEN, useClass: PictureIndexDbStore },
+    ],
+    bootstrap: [ AppComponent ],
 })
-export class AppModule {}
+export class AppModule {
+}
