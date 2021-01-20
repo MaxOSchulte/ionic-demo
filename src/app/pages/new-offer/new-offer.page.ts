@@ -33,7 +33,6 @@ export class NewOfferPage {
   ) {}
 
   async onCapture(path: string) {
-    // this.images.push($event);
     this.images.push({
       path,
       id: '',
@@ -50,9 +49,10 @@ export class NewOfferPage {
     await this.favourites.checkAndAdd(item);
 
     if (this.images.length > 1) {
-      this.images
-        .slice(1)
-        .forEach(async (picture) => await this.pictures.savePicture(picture.path, item.offerId));
+      for (const picture of this.images
+        .slice(1)) {
+        await this.pictures.savePicture(picture.path, item.offerId);
+      }
     }
 
     const toast = await this.toast.create({

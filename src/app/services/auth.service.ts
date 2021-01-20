@@ -14,6 +14,7 @@ export class AuthService {
     try {
       if (!this.platform.is('hybrid') || !(await this.faio.isAvailable())) {
         console.warn('Biometric authentication not available');
+        // call WebAuthentication
         this.authenticated = true;
       } else {
         this.authenticated = await this.faio.show({

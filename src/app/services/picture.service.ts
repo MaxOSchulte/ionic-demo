@@ -4,8 +4,6 @@ import { ToastController } from '@ionic/angular';
 import { PictureItem, PictureStore, PICTURE_STORE_TOKEN } from '../stores/picture-index-db.store';
 const { Camera } = Plugins;
 
-// import camera
-
 @Injectable({
   providedIn: 'root',
 })
