@@ -28,17 +28,16 @@ export interface AnimationOptions {
   baseEl: HTMLElement;
   progressAnimation: boolean;
   showGoBack: boolean;
-  animationBuilder: (_, opts) => {}
+  animationBuilder: (_, opts) => {};
   progressionCallback?: () => {};
   duration?: number;
 }
 
 export const customAnimation = (_: HTMLElement, opts: AnimationOptions) => {
-  console.log(opts);
+  console.log({ element: _, opts });
 
   // create root transition
-  const rootTransition = animationCtrl
-    .create();
+  const rootTransition = animationCtrl.create();
 
   return rootTransition;
 };

@@ -10,55 +10,33 @@ export class PictureService {
     constructor(
         private readonly toasts: ToastController,
         @Inject(PICTURE_STORE_TOKEN) private readonly pictures: PictureStore,
-  ) {}
-
-  async takePicture(): Promise<string> {
-    // try to call getPhoto with dataUrl and return dataUrl
-    try {
-      return ''; // TODO return DataUrl containing Photo / Picture data
     ) {
-      // notify user on error
-      const toast = await this.toasts.create({
-        message: 'Could not take picture - ' + e.message,
-        duration: 2000,
-        color: 'warning',
-        translucent: true,
-      });
-      toast.present();
     }
 
     async takePicture(): Promise<string> {
-    // call save on picture store service
-    const pictureId = await this.pictures.savePicture({ path, offerId });
-
         // try to call getPhoto with dataUrl and return dataUrl
-    try {
-      let persistState = await navigator.storage.persisted();
-      console.log('persist?', persistState);
-
         try {
-            const capture = await Camera.getPhoto({
-          (await navigator.permissions.query({ name: 'persistent-storage' })).state === 'granted';
-      }
-
-        const toast = await this.toasts.create({message: 'Photo yeay'});
-        navigator.storage.persist();
-      }
-    } catch (e) {
-        await toast.present();
+            return ''; // TODO return DataUrl containing Photo / Picture data
+        } catch (e) {
+            // notify user on error
+            const toast = await this.toasts.create({
+                message: 'Could not take picture - ' + e.message,
+                duration: 2000,
+                color: 'warning',
+                translucent: true,
+            });
+            toast.present();
+        }
     }
 
     async savePicture(path: string, offerId: number): Promise<number> {
         // call save on picture store service
-      animated: true,
-      duration: 3000,
-      message: `Picture Saved`,
-      color: 'dark',
         const pictureId = await this.pictures.savePicture({path, offerId});
 
         // try to persist storage
         try {
             let persistState = await navigator.storage.persisted();
+            console.log('persist?', persistState);
 
             if (!persistState) {
                 persistState =
@@ -73,6 +51,11 @@ export class PictureService {
         }
 
         // notify user for saved picture
+        const toastConfig = {
+            animated: true,
+            duration: 3000,
+            message: `Picture Saved`,
+            color: 'dark',
         };
 
         // check browser for quota and warn in notification
