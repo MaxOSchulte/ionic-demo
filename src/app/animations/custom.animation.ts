@@ -1,4 +1,5 @@
 import { AnimationController } from '@ionic/angular';
+import { NavigationOptions } from '@ionic/angular/providers/nav-controller';
 const animationCtrl = new AnimationController();
 
 // https://github.com/mhartington/v5-animations/blob/master/src/app/animations/index.ts
@@ -15,27 +16,45 @@ export const getIonPageElement = (element: HTMLElement) => {
   return element;
 };
 
+// https://github.com/ionic-team/ionic-framework/blob/e2d8e5c4dcf893ddd8aaa556c1dd8fcaf52411c9/core/src/utils/transition/index.ts#L239
+// https://github.com/ionic-team/ionic-framework/blob/e2d8e5c4dcf893ddd8aaa556c1dd8fcaf52411c9/core/src/components/nav/nav-interface.ts#L27
+// https://github.com/ionic-team/ionic-framework/blob/e2d8e5c4dcf893ddd8aaa556c1dd8fcaf52411c9/core/src/components/nav/nav-interface.ts#L41
+export interface AnimationOptions {
+  mode: 'md' | 'ios';
+  animated: boolean;
+  direction: 'root' | 'forward' | 'back';
+  enteringEl: HTMLElement;
+  leavingEl: HTMLElement;
+  baseEl: HTMLElement;
+  progressAnimation: boolean;
+  showGoBack: boolean;
+  animationBuilder: (_, opts) => {}
+  progressionCallback?: () => {};
+  duration?: number;
+}
+
+
 export const customAnimation = (_: HTMLElement, opts: any) => {
   // create root transition
   const rootTransition = animationCtrl
-    .create()
-    .duration(opts.duration || 333)
-    .easing('cubic-bezier(0.7,0,0.3,1)');
+      .create()
+      .duration(opts.duration || 333)
+      .easing('cubic-bezier(0.7,0,0.3,1)');
 
-  // create enter and exit transition
-  const enterTransition = animationCtrl.create().addElement(getIonPageElement(opts.enteringEl));
-  const exitTransition = animationCtrl.create().addElement(getIonPageElement(opts.leavingEl));
+  const enterTransition = animationCtrl.create().addElement(opts.enteringEl);
+  const exitTransition = animationCtrl.create().addElement(opts.leavingEl);
 
-  // handle animation depending on direction
+  enterTransition.fromTo('opacity', '0', '1');
+  exitTransition.fromTo('opacity', '1', '0');
+
   if (opts.direction === 'forward') {
-    enterTransition.fromTo('opacity', '0', '1');
-    exitTransition.fromTo('opacity', '1', '0');
+    enterTransition.fromTo('transform', 'translateX(-1.5%)', 'translateX(0%)');
+    exitTransition.fromTo('transform', 'translateX(0%)', 'translateX(1.5%)');
   } else {
-    enterTransition.fromTo('opacity', '0', '1');
-    exitTransition.fromTo('opacity', '1', '0');
+    enterTransition.fromTo('transform', 'translateX(1.5%)', 'translateX(0%)');
+    exitTransition.fromTo('transform', 'translateX(0%)', 'translateX(-1.5%)');
   }
 
-  // add transition to root and return root
   rootTransition.addAnimation([enterTransition, exitTransition]);
   return rootTransition;
 };
