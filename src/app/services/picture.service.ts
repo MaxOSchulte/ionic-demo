@@ -1,7 +1,8 @@
 import { Inject, Injectable } from '@angular/core';
 import { CameraResultType, Plugins } from '@capacitor/core';
 import { ToastController } from '@ionic/angular';
-import { PictureItem, PictureStore, PICTURE_STORE_TOKEN } from '../stores/picture-index-db.store';
+import { PICTURE_STORE_TOKEN, PictureItem, PictureStore } from '../stores/picture-index-db.store';
+
 const { Camera } = Plugins;
 
 @Injectable({
@@ -16,23 +17,19 @@ export class PictureService {
   async takePicture(): Promise<string> {
     // try to call getPhoto with dataUrl and return dataUrl
     try {
-      return (
-        await Camera.getPhoto({
-          quality: 90,
-          allowEditing: true,
-          resultType: CameraResultType.DataUrl,
-        })
-      ).dataUrl;
+      const capture = await Camera.getPhoto({
+        allowEditing: false,
+        quality: 0.7,
+        resultType: CameraResultType.DataUrl
+      });
+      return capture.dataUrl;
     } catch (e) {
       // notify user on error
-      const toast = await this.toasts.create({
-        message: 'Could not take picture - ' + e.message,
-        duration: 2000,
-        color: 'warning',
-        translucent: true,
-      });
-      toast.present();
     }
+
+    const toast = await this.toasts.create({message: 'Photo yeay'});
+    await toast.present();
+
   }
 
   async savePicture(path: string, offerId: number): Promise<number> {
@@ -70,7 +67,7 @@ export class PictureService {
 
       if (quota / usage < 2) {
         toastConfig.message += ' - Storage Usage Warning';
-        toastConfig.color = 'warning';
+        toastConfig.color = 'warning;
       }
     }
 

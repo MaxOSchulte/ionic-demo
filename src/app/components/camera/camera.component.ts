@@ -42,15 +42,6 @@ export class CameraComponent {
     }
   }
 
-  // async saveToDevice(data: string) {
-  //   const path = new Date().getTime() + 'ImmoAppImage.jpeg';
-  //   const file = await Filesystem.writeFile({
-  //     path,
-  //     data,
-  //     directory: FilesystemDirectory.Data,
-  //   });
-  // }
-
   async takePictureCapacitor() {
     const picture = await this.picture.takePicture();
     this.capture.emit(picture);

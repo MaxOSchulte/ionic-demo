@@ -1,12 +1,13 @@
 <ion-router-outlet id="main"></ion-router-outlet>
 <!-- ion tabs -->
+
 <ion-tabs>
     <!-- ion tab bar if mobile to switch ngtemplate with layout context -->
     <ion-tab-bar slot="top" *ngIf="!(mobile$ | async)" style="justify-content: flex-start;">
-        <ng-content *ngTemplateOutlet="nav; context: {layout: 'icon-start'}"></ng-content>
+        <ng-container *ngTemplateOutlet="nav;  context: {layout: 'icon-start'}"></ng-container>
     </ion-tab-bar>
     <ion-tab-bar slot="bottom" *ngIf="mobile$ | async">
-        <ng-content *ngTemplateOutlet="nav; context: {layout: 'label-hide'}"></ng-content>
+        <ng-container *ngTemplateOutlet="nav; context: {layout: 'label-hide'}"></ng-container>
     </ion-tab-bar>
 </ion-tabs>
 
