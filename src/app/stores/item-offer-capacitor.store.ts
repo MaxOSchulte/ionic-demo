@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Plugins } from '@capacitor/core';
+import { Storage } from '@capacitor/storage';
 import { environment } from '../../environments/environment';
 import { OfferItem } from '../models/offer-item.model';
 import { ItemOfferStore } from './item-offer.store';
-
-const { Storage } = Plugins;
 
 // General storage using simple blob --> cordova storage handles all the rest
 @Injectable({ providedIn: 'root' })

@@ -1,9 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
-import { CameraResultType, Plugins } from '@capacitor/core';
+import { CameraResultType, Camera } from '@capacitor/camera';
 import { ToastController } from '@ionic/angular';
 import { PICTURE_STORE_TOKEN, PictureItem, PictureStore } from '../stores/picture-index-db.store';
-
-const { Camera } = Plugins;
 
 @Injectable({
   providedIn: 'root',
@@ -67,7 +65,7 @@ export class PictureService {
 
       if (quota / usage < 2) {
         toastConfig.message += ' - Storage Usage Warning';
-        toastConfig.color = 'warning;
+        toastConfig.color = 'warning';
       }
     }
 

@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Plugins } from '@capacitor/core';
+import { LocalNotifications } from '@capacitor/local-notifications';
 import { PictureService } from 'src/app/services/picture.service';
 import { PictureItem } from 'src/app/stores/picture-index-db.store';
 import { OfferItem } from '../../models/offer-item.model';
 import { FavouritesService } from '../../services/favourites.service';
 import { ItemService } from '../../services/item.service';
-
-const { LocalNotifications } = Plugins;
 
 @Component({
   selector: 'app-offer-details',
@@ -68,8 +66,8 @@ export class OfferDetailsPage implements OnInit {
 
   // request permissions
   async notify() {
-    await LocalNotifications.requestPermission();
-    const notifs = await LocalNotifications.schedule({
+    await LocalNotifications.requestPermissions();
+    const notification = await LocalNotifications.schedule({
       notifications: [
         {
           title: 'Some Title',

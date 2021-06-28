@@ -1,14 +1,12 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Plugins } from '@capacitor/core';
 import { ToastController } from '@ionic/angular';
 import { OfferItem } from 'src/app/models/offer-item.model';
 import { FavouritesService } from 'src/app/services/favourites.service';
+import { Clipboard } from '@capacitor/clipboard';
 import { PictureService } from 'src/app/services/picture.service';
 import { PictureItem } from 'src/app/stores/picture-index-db.store';
-
-const { Clipboard } = Plugins;
 
 @Component({
   selector: 'app-new-offer',
@@ -49,8 +47,7 @@ export class NewOfferPage {
     await this.favourites.checkAndAdd(item);
 
     if (this.images.length > 1) {
-      for (const picture of this.images
-        .slice(1)) {
+      for (const picture of this.images.slice(1)) {
         await this.pictures.savePicture(picture.path, item.offerId);
       }
     }
