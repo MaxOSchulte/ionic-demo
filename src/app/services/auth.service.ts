@@ -17,14 +17,13 @@ export class AuthService {
         // call WebAuthentication
         this.authenticated = true;
       } else {
-        this.authenticated = await this.faio.show({
+        this.authenticated = !!(await this.faio.show({
           title: 'Face ID and Fingerprint authentication',
           description: 'please authenticate',
-        });
+        }));
       }
     } catch (e) {
       console.error('authentication failed', e);
-      this.authenticated = false;
     }
     return this.authenticated;
   }
