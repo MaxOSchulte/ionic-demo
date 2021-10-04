@@ -12,19 +12,23 @@
         <ion-list id="inbox-list">
           <ion-list-header>Site Navigation</ion-list-header>
           <ion-menu-toggle auto-hide="false">
-            <ion-item routerDirection="root" [routerLink]="'/tabbed/home'" lines="none" detail="false"
+            <ion-item routerDirection="forward" [routerLink]="'/tabbed/home'" lines="none" detail="false"
               [routerLinkActive]="['active']">
               <ion-label>Home</ion-label>
             </ion-item>
-            <ion-item routerDirection="root" [routerLink]="'/tabbed/search'" lines="none" detail="false"
+            <ion-item routerDirection="forward" [routerLink]="'/tabbed/search'" lines="none" detail="false"
               [routerLinkActive]="['active']">
               <ion-label>Suche</ion-label>
             </ion-item>
-            <ion-item routerDirection="root" [routerLink]="'/tabbed/favourites'" lines="none" detail="false"
+            <ion-item routerDirection="forward" [routerLink]="'/offer-details/1'" lines="none" detail="false"
+                      [routerLinkActive]="['active']">
+              <ion-label>Direkt 1</ion-label>
+            </ion-item>
+            <ion-item routerDirection="forward" [routerLink]="'/tabbed/favourites'" lines="none" detail="false"
               [routerLinkActive]="['active']">
               <ion-label>Favouriten</ion-label>
             </ion-item>
-            <ion-item routerDirection="root" [routerLink]="'/tabbed/new-offer'" lines="none" detail="false"
+            <ion-item routerDirection="forward" [routerLink]="'/tabbed/new-offer'" lines="none" detail="false"
               [routerLinkActive]="['active']">
               <ion-label>Angebot Anlegen</ion-label>
             </ion-item>

@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import { FingerprintAIO } from '@ionic-native/fingerprint-aio/ngx';
-import { Platform } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root',
@@ -8,20 +6,12 @@ import { Platform } from '@ionic/angular';
 export class AuthService {
   private authenticated = false;
 
-  constructor(private readonly faio: FingerprintAIO, private readonly platform: Platform) {}
+  constructor() {}
 
   async authenticate(): Promise<boolean> {
     try {
-      if (!this.platform.is('hybrid') || !(await this.faio.isAvailable())) {
-        console.warn('Biometric authentication not available');
-        // call WebAuthentication
-        this.authenticated = true;
-      } else {
-        this.authenticated = !!(await this.faio.show({
-          title: 'Face ID and Fingerprint authentication',
-          description: 'please authenticate',
-        }));
-      }
+      // TODO implement some authentication logic. E.g. FingerprintAIO
+      this.authenticated = true;
     } catch (e) {
       console.error('authentication failed', e);
     }

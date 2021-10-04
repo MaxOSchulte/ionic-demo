@@ -1,5 +1,4 @@
 import { Injectable, InjectionToken } from '@angular/core';
-import Dexie from 'dexie';
 
 export const PICTURE_STORE_TOKEN = new InjectionToken<PictureStore>('Picture Store');
 
@@ -12,30 +11,32 @@ export interface PictureStore {
 export interface PictureItem {
   path: string;
   offerId: number;
-  id?: string;
+  id?: number;
 }
 
+//Extend Dexie and implement Interface
 @Injectable()
-export class PictureIndexDbStore extends Dexie implements PictureStore {
-  private pictures: Dexie.Table<PictureItem, number>;
+export class PictureIndexDbStore {
+  // declare property to reference a table with type and index
 
   constructor() {
-    super('ImmoPictureDexie', { autoOpen: true });
-    this.version(1).stores({
-      pictures: '++id, offerId',
-    });
-    this.pictures = this.table('pictures');
+    // Call super and auto open database
+    // start database with version 1 and describe the table
+    // reference the table
   }
 
   async savePicture(picture: PictureItem, id?: number): Promise<number> {
-    return this.pictures.add(picture);
+    // save a picture
+    return -1;
   }
 
   async getPicture(id: number): Promise<PictureItem> {
-    return this.pictures.get(id);
+    // return a picture
+    return {} as PictureItem;
   }
 
   async getPictureForOffer(offerId: number): Promise<PictureItem[]> {
-    return this.pictures.filter(({ offerId: oid }) => oid === offerId).toArray();
+    // return this.pictures.filter(({ offerId: oid }) => oid === offerId).toArray();
+    return [];
   }
 }

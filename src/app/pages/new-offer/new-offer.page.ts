@@ -33,7 +33,6 @@ export class NewOfferPage {
   async onCapture(path: string) {
     this.images.push({
       path,
-      id: '',
       offerId: -1,
     });
   }

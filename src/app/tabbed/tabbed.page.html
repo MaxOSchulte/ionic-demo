@@ -3,11 +3,8 @@
 
 <ion-tabs>
     <!-- ion tab bar if mobile to switch ngtemplate with layout context -->
-    <ion-tab-bar slot="top" *ngIf="!(mobile$ | async)" style="justify-content: flex-start;">
-        <ng-container *ngTemplateOutlet="nav;  context: {layout: 'icon-start'}"></ng-container>
-    </ion-tab-bar>
-    <ion-tab-bar slot="bottom" *ngIf="mobile$ | async">
-        <ng-container *ngTemplateOutlet="nav; context: {layout: 'label-hide'}"></ng-container>
+    <ion-tab-bar [slot]="(mobile$ | async ) ? 'bottom': 'top'">
+        <ng-content *ngTemplateOutlet="nav; context: {layout: 'label-hide'}"></ng-content>
     </ion-tab-bar>
 </ion-tabs>
 

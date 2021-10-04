@@ -19,7 +19,7 @@ import { customAnimation } from './animations/custom.animation';
     entryComponents: [],
     imports: [
         BrowserModule,
-        IonicModule.forRoot({navAnimation: customAnimation}),
+        IonicModule.forRoot({navAnimation: customAnimation, mode: 'md'}),
         AppRoutingModule,
         ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     ],
