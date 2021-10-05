@@ -37,7 +37,7 @@ export const customAnimation = (_: HTMLElement, opts: AnimationOptions) => {
   console.log({ element: _, opts });
 
   // create root transition
-  const rootTransition = animationCtrl.create();
+  const rootTransition = animationCtrl
     .create()
     .duration(opts.duration || 333)
     .easing('cubic-bezier(0.7,0,0.3,1)');
