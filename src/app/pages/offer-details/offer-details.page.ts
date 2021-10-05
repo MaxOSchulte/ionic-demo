@@ -24,7 +24,7 @@ export class OfferDetailsPage {
   ) {
   }
 
-  async ngOnInit() {
+  async ionViewWillEnter() {
     const id = this.acr.snapshot.params.id;
     this.item = await this.favourites.get(Number.parseInt(id, 10));
 
