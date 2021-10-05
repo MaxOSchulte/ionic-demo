@@ -68,7 +68,7 @@ export class OfferDetailsPage {
 
   // request permissions
   async notify() {
-    await LocalNotifications.requestPermission();
+    await LocalNotifications.requestPermissions();
     await LocalNotifications.schedule({
       notifications: [
         {
