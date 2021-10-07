@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LocalNotifications } from '@capacitor/local-notifications';
-import { PictureService } from 'src/app/services/picture.service';
-import { PictureItem } from 'src/app/stores/picture-index-db.store';
+
 import { OfferItem } from '../../models/offer-item.model';
 import { FavouritesService } from '../../services/favourites.service';
 import { ItemService } from '../../services/item.service';
+import { PictureService } from '../../services/picture.service';
+import { PictureItem } from '../../stores/picture-index-db.store';
 
 @Component({
   selector: 'app-offer-details',

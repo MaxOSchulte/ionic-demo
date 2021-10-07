@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
-import { OfferItem } from 'src/app/models/offer-item.model';
-import { FavouritesService } from 'src/app/services/favourites.service';
 import { Clipboard } from '@capacitor/clipboard';
-import { PictureService } from 'src/app/services/picture.service';
-import { PictureItem } from 'src/app/stores/picture-index-db.store';
+import { OfferItem } from '../../models/offer-item.model';
+import { FavouritesService } from '../../services/favourites.service';
+import { PictureService } from '../../services/picture.service';
+import { PictureItem } from '../../stores/picture-index-db.store';
 
 @Component({
   selector: 'app-new-offer',

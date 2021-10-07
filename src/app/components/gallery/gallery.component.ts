@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { PictureItem } from 'src/app/stores/picture-index-db.store';
+import { PictureItem } from '../../stores/picture-index-db.store';
 
 @Component({
   selector: 'app-gallery',

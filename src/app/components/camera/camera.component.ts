@@ -1,6 +1,6 @@
 import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
 import { ToastController } from '@ionic/angular';
-import { PictureService } from 'src/app/services/picture.service';
+import { PictureService } from '../../services/picture.service';
 
 // A good example how to build an app and use the camera
 // https://ionicframework.com/docs/angular/your-first-app
