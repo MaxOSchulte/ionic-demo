@@ -30,3 +30,5 @@ npm-debug.log*
 /plugins
 /www
 /www/
+node_modules/cache
+.angular/cache
