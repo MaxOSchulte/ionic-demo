@@ -44,7 +44,7 @@ export class OfferDetailsPage {
       const id = await this.pictures.savePicture($event, this.item.offerId);
       this.images.push({
         offerId: this.item.offerId,
-        id: id + '',
+        id: id,
         path: $event,
       });
     }
