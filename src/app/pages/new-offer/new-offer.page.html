@@ -13,7 +13,7 @@
             <ion-title size="large">New Favourite</ion-title>
         </ion-toolbar>
     </ion-header>
-    <ion-grid fixed>
+    <ion-grid fixed="true">
         <ion-row>
             <ion-col size-xs="12" size-md="6" size-xl="6">
                 <app-gallery [images]="images"></app-gallery>
@@ -38,9 +38,21 @@
                         <ion-textarea formControlName="shortDescription"></ion-textarea>
                     </ion-item>
                     <ion-item>
-                        <ion-label>Date</ion-label>
-                        <ion-datetime formControlName="date" value="2019-10-01T15:43:40.394Z" display-timezone="utc">
-                        </ion-datetime>
+                        <ion-label position="floating">Date</ion-label>
+                        <ion-input
+                                value="{{ form.value.date | date: 'dd.MM.yyyy' }}"
+                                id="date"
+                        ></ion-input>
+                        <ion-popover trigger="date" >
+                            <ng-template>
+                                <ion-datetime
+                                        presentation="date-time"
+                                        formControlName="date"
+                                        locale="de-DE"
+                                ></ion-datetime>
+                            </ng-template>
+                        </ion-popover>
+
                     </ion-item>
 
                     <ion-item>
